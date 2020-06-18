@@ -1,0 +1,38 @@
+{
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.errorSign": "✗",
+  "diagnostic.hintSign": "⚠",
+  "diagnostic.infoSign": "⚠",
+  "diagnostic.enable": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "Markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "html",
+    "css",
+    "go"
+  ],
+  "prettier.eslintIntegration": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.disableSuccessMessage": true,
+  "suggest.removeDuplicateItems": true,
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    }
+  }
+}
