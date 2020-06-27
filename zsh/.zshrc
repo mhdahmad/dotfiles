@@ -48,9 +48,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Aliases
 alias yarn='yarnpkg'
 alias ls='lsd'
-alias code='codium'
 alias vim='nvim'
-alias vi='nvim'
 alias nethogs='sudo nethogs'
 
 # Load Spaceship ZSH theme

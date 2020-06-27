@@ -1,13 +1,16 @@
 " Theme
-colorscheme dracula
+set termguicolors
+set background=dark
+let g:gruvbox_italic = 1
+colorscheme gruvbox
 
 " Airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#fzf#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline_theme='dracula'
 
 " ULTILSNIPS
 let g:UltiSnipsExpandTrigger="<c-s>"
@@ -18,10 +21,10 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 " EMMET
 let g:user_emmet_settings = {
-  \  'javascript' : {
+  \  'javascript.jsx' : {
     \      'extends' : 'jsx',
     \  },
-\}
+  \}
 
 " FUGITIVE
 nmap <leader>gw :Gwrite<CR>
@@ -43,7 +46,7 @@ nnoremap <Leader>gt :FzfRg<CR>
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 
 function! FZFWithDevIcons()
-  let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --theme "Dracula" --color always --style numbers {2..}"'
+  let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --style numbers {2..}"'
 
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND.'| devicon-lookup'), '\n')
