@@ -51,6 +51,9 @@ alias yarn='yarnpkg'
 alias ls='lsd'
 alias vim='nvim'
 alias nethogs='sudo nethogs'
+alias protonvpn='sudo protonvpn'
+alias pvpn='sudo protonvpn'
+alias code='codium'
 
 # Load Spaceship ZSH theme
 eval "$(starship init zsh)"
