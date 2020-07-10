@@ -41,7 +41,7 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Variables
 export EDITOR='nvim'
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!{node_modules/*,.git/*,.var/*}"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!{node_modules/*,vendor/*,.git/*,.var/*}"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--height 75% --layout=reverse'
 export JAVA_HOME='/usr/lib/jvm/java-openjdk'
