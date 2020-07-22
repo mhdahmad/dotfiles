@@ -1,16 +1,21 @@
-" Theme
+" {{ Theme }}
 set termguicolors
 set background=dark
 let g:gruvbox_italic = 1
 colorscheme gruvbox
 
-" Airline
+" {{ Airline }}
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#fzf#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
+
+" {{ SuperTab }}
+let g:SuperTabDefaultCompletionType = '<c-n>'
+let g:SuperTabClosePreviewOnPopupClose = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
 
 " ULTILSNIPS
 let g:UltiSnipsExpandTrigger="<c-s>"
@@ -19,19 +24,21 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
-" EMMET
+" {{ EMMET }}
+let g:user_emmet_expandabbr_key='<C-@>'
+imap <expr> <C-Space> emmet#expandAbbrIntelligent("\<tab>")
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
     \      'extends' : 'jsx',
     \  },
   \}
 
-" FUGITIVE
+" {{ FUGITIVE }}
 nmap <leader>gw :Gwrite<CR>
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>gs :Gstatus<CR>
 
-" FZF
+" {{ FZF }}
 let g:fzf_command_prefix = 'Fzf'
 nnoremap <Leader>b :FzfBuffers<CR>
 nnoremap <Leader>h :FzfHistory<CR>
@@ -103,33 +110,7 @@ endfunction
 " }}}
 
 
-" COC
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
+" {{ COC }}
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -227,3 +208,43 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+
+" {{ vim-go }}
+" Automatically import packages on save
+let g:go_fmt_command = "goimports"
+
+" use only quickfix list
+let g:go_list_type = 'quickfix'
+
+" Use snakecase for JSON tags
+let g:go_addtags_transform = "snakecase"
+
+" more colors
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+
+" change single tab for 4 spaces in go files
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+" Prevent errors from opening the quickfix list
+let g:go_fmt_fail_silently = 1
+
+" Automatically get type info for objects under cursor
+let g:go_auto_type_info = 1
+
+" Use updatetime instead
+let g:go_updatetime = 0
+
+" Use pop up window instead of preview window
+let g:go_doc_popup_window = 1
+
+" Browser to use
+let g:go_play_browser_command = 'firefox %URL% &'

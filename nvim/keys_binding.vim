@@ -1,5 +1,5 @@
 " Change leader key from \ to ,
-" let mapleader = ","
+let mapleader = ","
 
 " Disable F1 bringing up the help doc every time
 inoremap <F1> <ESC>
@@ -19,7 +19,7 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 nnoremap <silent> <leader><space> :nohlsearch<CR>
 
 " Reload Vim config
-nnoremap <Leader>r :so ~/.config/nvim/init.vim<CR>
+nnoremap <leader>r :so ~/.config/nvim/init.vim<CR>
 
 " A saner way to save files.<F2> is easy to press
 nnoremap <F2> :w<CR>
@@ -33,4 +33,7 @@ nnoremap <C-right>   :tabnext<CR>
 nnoremap <C-t>     :tabnew<CR>
 nnoremap <leader>w     :tabclose<CR>
 
-
+" jump between errors in quickfix list
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>

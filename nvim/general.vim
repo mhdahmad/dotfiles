@@ -16,6 +16,9 @@ endif
 
 set encoding=UTF-8
 
+" Write content of the file automatically
+set autowrite
+
 " Show line numbers
 set number
 

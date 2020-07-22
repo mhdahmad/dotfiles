@@ -29,6 +29,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'javascriptreact'] }
 " See what keys do like in emacs
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
+Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'

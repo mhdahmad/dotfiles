@@ -16,8 +16,7 @@
     "json",
     "html",
     "css",
-    "go",
-    "php"
+    "go"
   ],
   "prettier.eslintIntegration": true,
   "eslint.autoFixOnSave": true,
