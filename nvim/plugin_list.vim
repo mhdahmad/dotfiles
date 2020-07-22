@@ -13,7 +13,6 @@ Plug 'junegunn/fzf.vim'
 " Autocompletion, Linting & Intellisense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 
 " Theme
 Plug 'morhetz/gruvbox'

@@ -54,7 +54,3 @@ nnoremap <C-right>   :tabnext<CR>
 nnoremap <C-t>     :tabnew<CR>
 nnoremap <leader>w     :tabclose<CR>
 
-" jump between errors in quickfix list
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
