@@ -18,14 +18,35 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 " turn off search highlights
 nnoremap <silent> <leader><space> :nohlsearch<CR>
 
+" Shortcut to open init.vim
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+
 " Reload Vim config
 nnoremap <leader>r :so ~/.config/nvim/init.vim<CR>
+
+" Save state of open Windows and Buffers
+nnoremap <leader>s :mksession<CR>
+
+" Create file under cursor
+:map <leader>gf :e <cfile><cr>
 
 " A saner way to save files.<F2> is easy to press
 nnoremap <F2> :w<CR>
 
 " Create file under cursor
 :map <leader>gf :e <cfile><cr>
+
+" Switching tabs quickly
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
 " Switch Tabs
 nnoremap <C-left> :tabprevious<CR>
