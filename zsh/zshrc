@@ -38,7 +38,8 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export EDITOR='nvim'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!{node_modules/*,vendor/*,.git/*,.var/*}"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='--height 75% --layout=reverse'
+export FZF_DEFAULT_OPTS='--layout=reverse --info=inline'
+export GOPATH=$HOME/workspace/go
 
 # Aliases
 alias yarn='yarnpkg'

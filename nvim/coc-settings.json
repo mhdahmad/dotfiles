@@ -15,7 +15,9 @@
     "vue",
     "json",
     "html",
-    "css"
+    "css",
+    "php",
+    "go"
   ],
   "prettier.eslintIntegration": true,
   "eslint.autoFixOnSave": true,

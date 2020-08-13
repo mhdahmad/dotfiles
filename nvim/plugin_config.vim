@@ -4,18 +4,51 @@ set background=dark
 let g:gruvbox_italic = 1
 colorscheme gruvbox
 
-" {{ Airline }}
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#fzf#enabled = 1
-let g:airline#extensions#whitespace#enabled = 0
+"" {{ LIGHTLINE }}
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
 
-" {{ SuperTab }}
+function! MyFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+  
+function! MyFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+function! LightlineReadonly()
+    return &readonly ? '' : ''
+endfunction
+
+function! LightlineFugitive()
+    if exists('*FugitiveHead')
+        let branch = FugitiveHead()
+	return branch !=# '' ? ' '.branch : ''
+    endif
+    return ''
+endfunction
+
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'currentfunction', 'fugitive', 'readonly', 'filename', 'modified', 'cocstatus' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction',
+      \   'filetype': 'MyFiletype',
+      \   'fileformat': 'MyFileformat',
+      \   'readonly': 'LightlineReadonly',
+      \   'fugitive': 'LightlineFugitive'
+      \ },
+      \ }
+
+"" {{ SUPERTAB }}
 let g:SuperTabDefaultCompletionType = '<c-n>'
 let g:SuperTabClosePreviewOnPopupClose = 1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
+inoremap <expr><silent><TAB>  pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
 
 " ULTILSNIPS
 let g:UltiSnipsExpandTrigger="<c-s>"
@@ -25,8 +58,7 @@ let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 " {{ EMMET }}
-let g:user_emmet_expandabbr_key='<C-@>'
-imap <expr> <C-Space> emmet#expandAbbrIntelligent("\<tab>")
+let g:user_emmet_expandabbr_key='<silent><C-y>'
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
     \      'extends' : 'jsx',
@@ -37,6 +69,9 @@ let g:user_emmet_settings = {
 nmap <leader>gw :Gwrite<CR>
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>gs :Gstatus<CR>
+
+" {{ SIGNIFY }}
+let g:signify_vcs_list = [ 'git' ]
 
 " {{ FZF }}
 let g:fzf_command_prefix = 'Fzf'
@@ -50,7 +85,7 @@ nnoremap <Leader>p :FzfGitFiles --exclude-standard --others --cached<CR>
 nnoremap <Leader>gt :FzfRg<CR>
 
 " floating fzf window with borders
-let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Todo', 'border': 'sharp' } }
 
 function! FZFWithDevIcons()
   let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --style numbers {2..}"'
@@ -85,32 +120,19 @@ endfunction
 " Open fzf Files
 nnoremap <silent> <C-p> :call FZFWithDevIcons()<CR>
 
-function! CreateCenteredFloatingWindow()
-    let width = min([&columns - 4, max([80, &columns - 20])])
-    let height = min([&lines - 4, max([20, &lines - 10])])
-    let top = ((&lines - height) / 2) - 1
-    let left = (&columns - width) / 2
-    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
-
-    let top = "┌" . repeat("─", width - 2) . "┐"
-    let mid = "│" . repeat(" ", width - 2) . "│"
-    let bot = "└" . repeat("─", width - 2) . "┘"
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-    let s:buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    au BufWipeout <buffer> exe 'bw '.s:buf
-endfunction
-" }}}
-
-
 " {{ COC }}
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -208,3 +230,42 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" {{ vim-go }}
+" Automatically import packages on save
+let g:go_fmt_command = "goimports"
+
+" use only quickfix list
+let g:go_list_type = 'quickfix'
+
+" Use snakecase for JSON tags
+let g:go_addtags_transform = "snakecase"
+
+" more colors
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+
+" change single tab for 4 spaces in go files
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+" Prevent errors from opening the quickfix list
+let g:go_fmt_fail_silently = 1
+
+" Automatically get type info for objects under cursor
+let g:go_auto_type_info = 1
+
+" Use updatetime instead
+let g:go_updatetime = 0
+
+" Use pop up window instead of preview window
+let g:go_doc_popup_window = 1
+
+" Browser to use
+let g:go_play_browser_command = 'firefox %URL% &'

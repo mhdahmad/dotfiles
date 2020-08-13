@@ -2,6 +2,7 @@
 filetype off
 
 filetype plugin indent on    " required
+runtime macros/matchit.vim
 
 syntax on
 
