@@ -1,8 +1,6 @@
 " {{ Theme }}
 set termguicolors
-set background=dark
-let g:gruvbox_italic = 1
-colorscheme gruvbox
+colorscheme dracula
 
 "" {{ LIGHTLINE }}
 function! CocCurrentFunction()
@@ -30,7 +28,7 @@ function! LightlineFugitive()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'currentfunction', 'fugitive', 'readonly', 'filename', 'modified', 'cocstatus' ] ]
@@ -45,10 +43,13 @@ let g:lightline = {
       \ },
       \ }
 
+" Use auocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
 "" {{ SUPERTAB }}
 let g:SuperTabDefaultCompletionType = '<c-n>'
 let g:SuperTabClosePreviewOnPopupClose = 1
-inoremap <expr><silent><TAB>  pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
 
 " ULTILSNIPS
 let g:UltiSnipsExpandTrigger="<c-s>"
@@ -85,7 +86,7 @@ nnoremap <Leader>p :FzfGitFiles --exclude-standard --others --cached<CR>
 nnoremap <Leader>gt :FzfRg<CR>
 
 " floating fzf window with borders
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Todo', 'border': 'sharp' } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'border': 'sharp' } }
 
 function! FZFWithDevIcons()
   let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --style numbers {2..}"'
@@ -119,6 +120,9 @@ endfunction
 
 " Open fzf Files
 nnoremap <silent> <C-p> :call FZFWithDevIcons()<CR>
+
+" {{ GUTENTAGS }}
+let g:gutentags_file_list_command = "rg --files --follow --ignore-file '/home/mhdahmad/.config/nvim/.vimignore'"
 
 " {{ COC }}
 " Use <c-space> to trigger completion.
@@ -210,7 +214,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set statusline^=%{coc#status()}
 
 " Mappings for CoCList
 " Show all diagnostics.

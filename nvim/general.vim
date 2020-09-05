@@ -95,7 +95,7 @@ set path+=**
 set wildmenu
 
 " Ignore node_modules and images from search results
-set wildignore+=**/node_modules/**,**/dist/**,**_site/**,*.swp,*.png,*.jpg,*.gif,*.webp,*.jpeg,*.map
+set wildignore+=**/node_modules/**,**/vendor/**,**/dist/**,**_site/**,*.swp,*.png,*.jpg,*.gif,*.webp,*.jpeg,*.map
 
 " Use the system register for all cut yank and paste operations
 set clipboard=unnamedplus

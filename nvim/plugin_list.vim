@@ -17,7 +17,7 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'SirVer/ultisnips'
 
 " Theme
-Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
 
 " Syntax Highlighting And Indentation For 100+ Languages
@@ -28,6 +28,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'javascriptreact', 'blade'] }
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'wellle/targets.vim'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'

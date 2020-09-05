@@ -22,10 +22,7 @@ nnoremap <silent> <leader><space> :nohlsearch<CR>
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 
 " Reload Vim config
-nnoremap <leader>r :so ~/.config/nvim/init.vim<CR>
-
-" Save state of open Windows and Buffers
-nnoremap <leader>s :mksession<CR>
+nnoremap <leader>sv :so ~/.config/nvim/init.vim<CR>
 
 " Create file under cursor
 :map <leader>gf :e <cfile><cr>
