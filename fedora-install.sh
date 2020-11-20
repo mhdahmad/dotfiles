@@ -34,6 +34,9 @@ sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-r
 # RpmFusion NonFree Repo
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+# Remi Repo
+
+
 # Disable the Modular Repos
 sudo sed -i 's/enabled=1/enabled=0/g' /etc/yum.repos.d/fedora-updates-modular.repo
 sudo sed -i 's/enabled=1/enabled=0/g' /etc/yum.repos.d/fedora-modular.repo
@@ -44,11 +47,7 @@ sudo sed -i 's/enabled=1/enabled=0/g' /etc/yum.repos.d/fedora-cisco-openh264.rep
 # Disable Machine Counting for all repos
 sudo sed -i 's/countme=1/countme=0/g' /etc/yum.repos.d/*
 
-# VSCode Repository
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo sh -c 'echo -e "[code]\nname=Visual Studio
-Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc"
-> /etc/yum.repos.d/vscode.repo'
+# VSCodium Repository
 
 # Flathub Repository
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -91,48 +90,59 @@ sudo dnf install -y \
 acpi `# Show battery status` \
 aria2 `# Ultra fast download utility` \
 bat `# A cat clone with syntax highlighting` \
-breeze-cursor-theme \
 celluloid \
-chromium-freeworld \
-code \
+chromium \
+composer \
 dconf-editor \
 exfat-utils \
+fedy \
 ffmpeg `# ffmpeg video convertor` \
 ffmpeg-libs \
 fira-code-fonts `# Fira Code font` \
 foliate `# E-book viewer` \
 fuse-exfat \
 fuse-sshfs \
-gitg \
 glances \
 gnome-shell-extension-appindicator \
 gnome-shell-extension-dash-to-dock \
-gnome-shell-extension-gpaste \
+gnome-shell-extension-gsconnect \
 gnome-shell-extension-pomodoro \
+gnome-tweaks \
+gvfs-nfs \
 htop \
 iotop \
-keepassxc `# Password Manager` \
 libreoffice-langpack-ar \
 libva-intel-driver \
 libva-intel-hybrid-driver \
+libva-utils \
 lm_sensors \
 lsd \
 'mozilla-fira-*' \
+mosh \
 mpv \
+nautilus-gsconnect \
 neofetch \
 neovim \
 nethogs `# Net top tools` \
 nodejs \
 p7zip \
 p7zip-plugins \
-papirus-icon-theme \
 peek \
+php \
+php-bcmath \
+php-cli \
+php-fpm \
+php-mysqlnd \
+php-pdo \
+protonvpn-cli \
+pss \
 podman-docker \
 powertop \
 pulseeffects \
 python3-devel \
 python3-neovim \
 ripgrep \
+rpmconf \
 setroubleshoot \
 starship \
 telegram-desktop \
@@ -157,7 +167,8 @@ if [ ! -z "$FLATPAK" ]; then
   com.discordapp.Discord \
   com.getpostman.Postman \
   com.slack.Slack \
-  org.gtk.Gtk3theme.Adwaita-dark
+  org.gtk.Gtk3theme.Adwaita-dark \
+  org.gtk.Gtk3theme.Arc-Dark
 fi
 
 # The user needs to reboot to apply all changes.

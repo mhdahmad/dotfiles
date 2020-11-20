@@ -6,14 +6,7 @@ runtime macros/matchit.vim
 
 syntax on
 
-if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-
-if (has("termguicolors"))
-  set termguicolors
-endif
+set termguicolors
 
 set encoding=UTF-8
 
@@ -28,9 +21,6 @@ set t_8f=^[[38;2;%lu;%lu;%lum
 
 " Stop concealing quotes in JSON
 let g:vim_json_syntax_conceal = 0
-
-" Enable JSX syntax highlighting in .js files
-let g:jsx_ext_required = 0
 
 :augroup numbertoggle
 :  autocmd!
@@ -82,6 +72,7 @@ set textwidth=80
 set formatoptions+=t
 set colorcolumn=+1
 set showmatch
+set noshowmode " Hide mode information like -- INSERT --
 set lazyredraw
 
 " #FINDING FILES

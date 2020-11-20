@@ -15,7 +15,7 @@ bindkey -e
 fpath=(~/.zsh/completions /usr/share/zsh/vendor-completions $fpath)
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/mhdahmad/.zshrc'
+zstyle :compinstall filename '/home/muhammad/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -36,10 +36,9 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Variables
 export EDITOR='nvim'
-export FZF_DEFAULT_COMMAND='rg --files --follow --hidden --ignore-file "/home/mhdahmad/.config/nvim/.vimignore"'
+export FZF_DEFAULT_COMMAND='rg --files --follow --hidden --ignore-file "/home/muhammad/workspace/dotfiles/.fzfignore"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--layout=reverse --info=inline'
-export GOPATH=$HOME/workspace/go
 
 # Aliases
 alias yarn='yarnpkg'
@@ -49,10 +48,12 @@ alias bat='bat --style numbers --theme ansi-dark'
 alias cat='bat --paging never'
 alias less='bat'
 alias vim='nvim'
-alias nethogs='sudo nethogs'
 alias protonvpn='sudo protonvpn'
 alias pvpn='sudo protonvpn'
 alias code='codium'
+
+# Load dircolors
+test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
 
 # Load Spaceship ZSH theme
 eval "$(starship init zsh)"
